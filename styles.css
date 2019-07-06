@@ -1,0 +1,28 @@
+html {
+    font-family: monospace;
+    text-align: center;
+    background-color:blueviolet;
+}
+
+#app_container {
+    height: 300px;
+    width: 400px;
+    background-color: blueviolet;
+    margin: 100px auto auto auto;
+
+}
+
+#settings_container {
+    height: 40%;
+    width: 100%;
+    background-color: gray;
+    border-radius: 10px;
+}
+
+#timer_container {
+    height: 55%;
+    width: 100%;
+    background-color: gray;
+    margin-top: 10%;
+    border-radius: 10px;
+}
