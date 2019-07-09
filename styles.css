@@ -13,11 +13,37 @@ html {
 }
 
 #settings_container {
-    height: 40%;
+    height: 41%;
     width: 100%;
     background-color: gray;
     border-radius: 10px;
 }
+
+
+#work_time_container {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-top: 10px;
+    padding: 3px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+#break_time_container {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 3px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+
 
 #timer_container {
     height: 55%;
@@ -25,4 +51,9 @@ html {
     background-color: gray;
     margin-top: 10%;
     border-radius: 10px;
+}
+
+#timer_value {
+    font-size: 32px;
+    padding-top: 30px;
 }

@@ -11,13 +11,19 @@
 <h1>Pomodoro App</h1>
 <div id = "app_container">
     <div id = "settings_container">
-        <p id = 'work_time'>work time</p>
+        <div id = "work_time_container">
+        <h3>Work</h3>
+        <p id = 'work_time'></p>
         <button onclick='addWork()'>+ min</button>
         <button onclick='minusWork()'>- min</button>
-
-        <p id = 'break_time'>break time</p>
+        </div>
+        
+        <div id = "break_time_container">
+        <h3>Break</h3>
+        <p id = 'break_time'></p>
         <button onclick='addBreak()'>+ min</button>
         <button onclick='minusBreak()'>- min</button>
+        </div>
     </div>
 
 
@@ -25,7 +31,8 @@
 
 
     <div id = "timer_container">
-
+        <p id = "timer_value"></p>
+        ,<button onclick='startWorkTime()'>Start</button>
     </div>
 
 
