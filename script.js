@@ -1,7 +1,6 @@
 
 let workMins = 25;
 let breakMins = 5;
-let startBreak = false;
 
 //sets times to variables.
 const workTime = document.querySelector('#work_time');
@@ -11,7 +10,7 @@ const breakTime = document.querySelector('#break_time');
 breakTime.textContent = breakMins + ' mins';
 
 const timerValue = document.querySelector('#timer_value');
-timerValue.textContent = workMins;
+timerValue.textContent = workMins + ' mins';
 
 
 
@@ -21,11 +20,11 @@ function addWork(){
     if (workMins > 0){
         workMins += 1;
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins;
+        timerValue.textContent = workMins + ' mins';
     } else {
         workMins = 1
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins;
+        timerValue.textContent = workMins + ' mins';
     }
 };
 
@@ -33,31 +32,31 @@ function minusWork(){
     if (workMins > 1){
         workMins -= 1;
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins;
+        timerValue.textContent = workMins + ' mins';
     } else {
         workMins = 1
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins;
+        timerValue.textContent = workMins + ' mins';
     }
 };
 
 function addBreak(){
     if (breakMins > 0){
         breakMins += 1;
-        breakTime.textContent = breakMins;
+        breakTime.textContent = breakMins + ' mins';
     } else {
         breakMins = 1
-        breakTime.textContent = breakMins;
+        breakTime.textContent = breakMins + ' mins';
     }
 };
 
 function minusBreak(){
     if (breakMins > 1){
         breakMins -= 1;
-        breakTime.textContent = breakMins;
+        breakTime.textContent = breakMins + ' mins';
     } else {
         breakMins = 1
-        breakTime.textContent = breakMins;
+        breakTime.textContent = breakMins + ' mins';
     }
 };
 
@@ -73,7 +72,7 @@ countTo = new Date(countTo).getTime();
 
 
 
-setInterval(function(){
+let clear = setInterval(function(){
 //time now
 let timeNow = new Date().getTime();
 //time to count...
@@ -83,13 +82,42 @@ let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 
-document.getElementById('timer_value').innerHTML = minutes + "m " + seconds + "s ";
-  
-// If the count down is over, turn off.
-if (distance < 0) {
-    clearInterval();
-    document.getElementById("timer_value").innerHTML = "breakFunc";
-    startBreak = true;
+timerValue.textContent = minutes + "m " + seconds + "s ";
+
+
+if (minutes == 0 && seconds == 0) {
+    clearInterval(clear);
+    startBreakTime();
 }
 }, 1000);
 };
+
+function startBreakTime(){
+
+
+    //get the time break expires
+    let countTo2 = new Date()
+    countTo2.setMinutes(countTo2.getMinutes() + breakMins);
+    countTo2 = new Date(countTo2).getTime();
+    
+    
+    
+    let clear2 = setInterval(function(){
+    //time now
+    let timeNow2 = new Date().getTime();
+    //time to count...
+    let distance2 = countTo2 - timeNow2;
+    
+    let minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+    
+    
+    timerValue.textContent = minutes2 + "m " + seconds2 + "s ";
+    
+    
+    if (minutes2 == 0 && seconds2 == 0) {
+        clearInterval(clear2);
+        startWorkTime();
+    }
+    }, 1000);
+    };
