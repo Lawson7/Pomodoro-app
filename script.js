@@ -1,6 +1,7 @@
 
 let workMins = 25;
 let breakMins = 5;
+let startClick = false;
 
 //sets times to variables.
 const workTime = document.querySelector('#work_time');
@@ -10,7 +11,7 @@ const breakTime = document.querySelector('#break_time');
 breakTime.textContent = breakMins + ' mins';
 
 const timerValue = document.querySelector('#timer_value');
-timerValue.textContent = workMins + ' mins';
+timerValue.textContent = '00:00'
 
 
 
@@ -20,11 +21,9 @@ function addWork(){
     if (workMins > 0){
         workMins += 1;
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins + ' mins';
     } else {
         workMins = 1
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins + ' mins';
     }
 };
 
@@ -32,11 +31,9 @@ function minusWork(){
     if (workMins > 1){
         workMins -= 1;
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins + ' mins';
     } else {
         workMins = 1
         workTime.textContent = workMins + ' mins';
-        timerValue.textContent = workMins + ' mins';
     }
 };
 
@@ -64,6 +61,9 @@ function minusBreak(){
 
 function startWorkTime(){
 
+if (startClick == false){ 
+//will block further start clicks
+startClick = true;
 
 //get the time work expires
 let countTo = new Date()
@@ -81,15 +81,25 @@ let distance = countTo - timeNow;
 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
-timerValue.textContent = minutes + "m " + seconds + "s ";
-
+if (seconds <= 9 && minutes <= 9){
+    timerValue.textContent = "0" + minutes + ":0" + seconds;
+} else if (seconds <= 9){
+    timerValue.textContent = minutes + ":0" + seconds;
+} else if (minutes <= 9){
+    timerValue.textContent = "0" + minutes + ":" + seconds;
+} else {
+    timerValue.textContent = minutes + ":" + seconds;
+}
 
 if (minutes == 0 && seconds == 0) {
     clearInterval(clear);
     startBreakTime();
 }
 }, 1000);
+}else {
+    console.log('You already started the timer!')
+}
+
 };
 
 function startBreakTime(){
@@ -111,8 +121,15 @@ function startBreakTime(){
     let minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
     let seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
     
-    
-    timerValue.textContent = minutes2 + "m " + seconds2 + "s ";
+    if (seconds2 <= 9 && minutes2 <= 9){
+        timerValue.textContent = "0" + minutes2 + ":0" + seconds2;
+    } else if (seconds2 <= 9){
+        timerValue.textContent = minutes2 + ":0" + seconds2;
+    } else if (minutes2 <= 9){
+        timerValue.textContent = "0" + minutes2 + ":" + seconds2;
+    } else {
+        timerValue.textContent = minutes2 + ":" + seconds2;
+    }
     
     
     if (minutes2 == 0 && seconds2 == 0) {
