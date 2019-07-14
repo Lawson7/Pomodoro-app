@@ -95,7 +95,7 @@ if (minutes == 0 && seconds == 0) {
     clearInterval(clear);
     startBreakTime();
 }
-}, 1000);
+}, 100);
 }else {
     console.log('You already started the timer!')
 }
