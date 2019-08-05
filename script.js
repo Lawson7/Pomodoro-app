@@ -94,7 +94,7 @@ if (seconds <= 9 && minutes <= 9){
 }
 
 if (minutes == 0 && seconds == 0) {
-    clearInterval(WorkInterval);
+    clearInterval(workInterval);
     startBreakTime();
 }
 }, 100);
