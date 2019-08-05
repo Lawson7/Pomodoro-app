@@ -2,6 +2,8 @@
 let workMins = 25;
 let breakMins = 5;
 let startClick = false;
+let workInterval = 0;
+let breakInterval = 0;
 
 //sets times to variables.
 const workTime = document.querySelector('#work_time');
@@ -72,7 +74,7 @@ countTo = new Date(countTo).getTime();
 
 
 
-let clear = setInterval(function(){
+workInterval = setInterval(function(){
 //time now
 let timeNow = new Date().getTime();
 //time to count...
@@ -92,12 +94,12 @@ if (seconds <= 9 && minutes <= 9){
 }
 
 if (minutes == 0 && seconds == 0) {
-    clearInterval(clear);
+    clearInterval(WorkInterval);
     startBreakTime();
 }
 }, 100);
 }else {
-    console.log('You already started the timer!')
+    console.log('You already started the timer! Please click stop, then reset.')
 }
 
 };
@@ -112,7 +114,7 @@ function startBreakTime(){
     
     
     
-    let clear2 = setInterval(function(){
+    breakInterval = setInterval(function(){
     //time now
     let timeNow2 = new Date().getTime();
     //time to count...
@@ -133,8 +135,20 @@ function startBreakTime(){
     
     
     if (minutes2 == 0 && seconds2 == 0) {
-        clearInterval(clear2);
+        clearInterval(breakInterval);
         startWorkTime();
     }
     }, 1000);
+    };
+
+    function stopAllTime(){
+        clearInterval(workInterval);
+        clearInterval(breakInterval);
+        console.log('timer stopped')
+    };
+
+    function resetAllTime(){
+        timerValue.textContent = '00:00'
+        startClick = false;
+        console.log('timer has been reset, click start when ready for a new session.')
     };
